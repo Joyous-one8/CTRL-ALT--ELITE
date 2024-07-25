@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Diet Checker</title>
+    <link rel="stylesheet" href="bpsug_styles.css">
+    <script defer src="bpsug_script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Diet Checker</h1>
+        <form id="dietForm">
+            <label for="bp">Blood Pressure:</label>
+            <input type="number" id="bp" name="bp" required>
+            
+            <label for="sugar">Sugar Level:</label>
+            <input type="number" id="sugar" name="sugar" required>
+            
+            <fieldset>
+                <legend>Select Diet Type:</legend>
+                <label>
+                    <input type="radio" name="dietType" value="vegetarian" checked> Vegetarian
+                </label>
+                <label>
+                    <input type="radio" name="dietType" value="nonVegetarian"> Non-Vegetarian
+                </label>
+            </fieldset>
+            
+            <button type="submit">Get Diet Plan</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+        <button id="downloadReport">Download Report</button>
+    </div>
+</body>
+</html>
+

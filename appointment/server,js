@@ -1,0 +1,51 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const app = express();
+const port = 5000;
+
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/appointmentBooking')
+    .then(() => {
+        console.log('MongoDB connected successfully');
+    })
+    .catch(err => {
+        console.error('Error connecting to MongoDB:', err);
+    });
+
+const appointmentSchema = new mongoose.Schema({
+  name: String,
+  doctor: String,
+  date: String,
+  time: String,
+});
+
+const Appointment = mongoose.model('Appointment', appointmentSchema);
+
+// Routes
+app.post('/book', async (req, res) => {
+  const { name, doctor, date, time } = req.body;
+  const newAppointment = new Appointment({ name, doctor, date, time });
+  await newAppointment.save();
+  res.send({ message: 'Appointment booked successfully!' });
+});
+
+app.get('/track', async (req, res) => {
+  const { name } = req.query;
+  const appointment = await Appointment.findOne({ name });
+  if (appointment) {
+    res.send({ appointment });
+  } else {
+    res.send({ message: 'No appointment found.' });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});

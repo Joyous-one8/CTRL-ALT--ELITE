@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Locator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h1>Find Nearby Healthcare Facilities</h1>
+    <div id="selector">
+        <label for="facility-type">Select Facility Type:</label>
+        <select id="facility-type">
+            <option value="hospital">Hospital</option>
+            <option value="clinic">Clinic</option>
+            <option value="doctors">Doctor</option>
+            <option value="pharmacy">Medical Store</option>
+            <option value="ambulance">Ambulance Service</option>
+        </select>
+        <label for="radius">Search Radius (km):</label>
+        <input type="range" id="radius" min="1" max="150" value="5" oninput="updateRadiusValue()">
+        <span id="radius-value">5</span> km
+        <button onclick="findFacilities()">Find</button>
+    </div>
+    <div id="map"></div>
+    <script src="script.js"></script>
+</body>
+</html>
